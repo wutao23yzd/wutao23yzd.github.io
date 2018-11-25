@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>iOS SDK开发(静态SDK) | 江水涛涛</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="iOS程序员">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="iOS SDK开发(静态SDK) | 江水涛涛">
+    <meta name="twitter:description" content="iOS程序员">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="iOS SDK开发(静态SDK) | 江水涛涛">
+    <meta property="og:description" content="iOS程序员">
+
+    
+    <meta name="author" content="吴涛">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar-small.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/11/09/sdks/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 江水涛涛 的主页"><img src="/images/wechat.jpeg" width="80" alt="江水涛涛 logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for 江水涛涛">江水涛涛</a></h1>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">我那该死的无处安放的魅力</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">文字</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme" class="blog-button">关于</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/wutao23yzd" title="GitHub" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-11-09T13:28:03.000Z" class="post-list__meta--date date">2018-11-09</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">iOS SDK开发(静态SDK)</h1>
+  </header>
+
+  <section class="post">
+    <p>静态方式开发，一直是iOS SDK开发的主流方式。百度地图、高德地图等大型三方SDK均是采用静态的方式开发。也有采用动态的方式开发SDK的如：环信。<br>静态方式和动态方式比较：</p>
+<blockquote>
+<ul>
+<li>静态SDK不能嵌套。见<a href="https://www.jianshu.com/p/874e178cdc9d" target="_blank" rel="noopener">iOS中Framework Library嵌套使用</a>。因此，当SDK需要引用其他SDK，且不希望暴露给用户时，只能采用<a href="https://www.jianshu.com/p/0b00d27ed2f5" target="_blank" rel="noopener">动态库</a>的开发方式。</li>
+<li>若SDK和项目中用到相同的三方库(如：AFNetworking)。动态库：工程和项目中可以存在2份AFNetworking,因此开发方便。静态库只会存在一份，因此开发相对复杂，但减少了代码的冗余。</li>
+</ul>
+</blockquote>
+<p>现以SDK和项目中都需要用到相同的三方库(如AFNetWorking）为例，介绍静态库开发和使用。Demo见<a href="https://github.com/wutao23yzd/SDKDemo，" target="_blank" rel="noopener">https://github.com/wutao23yzd/SDKDemo，</a> StaticSDK目录下。</p>
+<p>本文分为开发和使用2个部分：<br>开发：</p>
+<blockquote>
+<ul>
+<li>静态SDK的创建和配置</li>
+<li>利用workspace将sdk和Demo工程建立关联</li>
+<li>SDK中Bundle和脚本的配置和使用</li>
+<li>SDK中断点调试</li>
+</ul>
+</blockquote>
+<p>使用：</p>
+<blockquote>
+<ul>
+<li>SDK和项目共用一份AFNetworking</li>
+<li>利用.spec的方式安装SDK和相关依赖。</li>
+</ul>
+</blockquote>
+<hr>
+<p><strong>前期准备</strong></p>
+<ol>
+<li>开发环境：<blockquote>
+<ul>
+<li>Xcode 10</li>
+<li>cocoaPods version: <code>1.6.0.beta.2</code></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li><p>当为Xcode10时，需要升级cocoaPods为最新，否则会报错</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RuntimeError - [!] Xcodeproj doesn&apos;t know about the following attributes &#123;&quot;inputFileListPaths&quot;=&gt;[], &quot;outputFileListPaths&quot;=&gt;[]&#125; for the &apos;PBXShellScriptBuildPhase&apos; isa.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>升级cocoaPods</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 升级</span><br><span class="line">sudo gem install cocoapods --pre -n /usr/local/bin</span><br><span class="line">// 查看版本</span><br><span class="line">pod --version</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>2.知识储备：了解 <a href="http://www.ifelseboy.com/2015/09/03/xcodezhong-de-workspace-project-target-scheme/" target="_blank" rel="noopener">Xcode中的 workspace, project, target, scheme区别</a></p>
+<hr>
+<h3 id="开发"><a href="#开发" class="headerlink" title="开发"></a>开发</h3><h4 id="创建SDK工程和Demo工程"><a href="#创建SDK工程和Demo工程" class="headerlink" title="创建SDK工程和Demo工程"></a>创建SDK工程和Demo工程</h4><blockquote>
+<p>将SDK和Demo工程用一个workspace管理。</p>
+</blockquote>
+<h5 id="创建SDK"><a href="#创建SDK" class="headerlink" title="创建SDK"></a>创建SDK</h5><ol>
+<li>创建SDK工程<br>取名为HelloSDK，并做如下配置。<img src="/2018/11/09/sdks/p1.png">
+<div class="imgDiv"><span class="imgBottom">创建SDK</span></div><blockquote>
+<ul>
+<li>配置<code>Deployment Target</code> iOS 9.0</li>
+<li>Mach-O Type <code>Static Library</code></li>
+<li>Enable Bitcode <code>No</code></li>
+<li>Edit Scheme - Run - Info - Build Configuration <code>Release</code></li>
+</ul>
+</blockquote>
+</li>
+<li>在SDK工程中创建Bundle。<blockquote>
+<p>SDK 中xib,图片等一切资源都需要添加到Bundle中</p>
+</blockquote>
+</li>
+</ol>
+<p>依次选择，<code>file</code> -<code>New</code> -<code>Target</code>-<code>macOS</code> - <code>Bundle</code>;取名为 HelloSDKBundle。并做如下配置。</p>
+<blockquote>
+<ul>
+<li>Build Settings - Base SDK - iOS</li>
+<li>Deployment Target -9.0</li>
+<li>Enable Bitcode 设置为NO</li>
+<li>清除Build settings - Installation Directory路径信息</li>
+<li>COMBINE_HIDPI_IMAGES设置为NO</li>
+<li>Edit Scheme - Run - Info - Build Configuration <code>Release</code></li>
+</ul>
+</blockquote>
+<ol start="3">
+<li>在SDK工程中创建脚本。<blockquote>
+<p>SDK以模拟器编译时，会生成对应模拟器架构的SDK( i386,x86_64);以Generic iOS Device编译时，会生成真机架构的SDK(arm7,arm64)。脚本的作用是将这两个sdk合成一个，使的同时适用于真机和模拟器。</p>
+</blockquote>
+</li>
+</ol>
+<p><code>file</code> -<code>New</code> - <code>Target</code>-<code>Cross</code>-<code>platform</code> - <code>Aggregate</code>;取名为 <code>CommonStatic</code>。</p>
+<ul>
+<li><p>Run Script中添加以下脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$&#123;ACTION&#125;&quot; = &quot;build&quot; ]</span><br><span class="line">then</span><br><span class="line">INSTALL_DIR=$&#123;SRCROOT&#125;/Products/$&#123;PROJECT_NAME&#125;.framework</span><br><span class="line"></span><br><span class="line">DEVICE_DIR=$&#123;BUILD_ROOT&#125;/$&#123;CONFIGURATION&#125;-iphoneos/$&#123;PROJECT_NAME&#125;.framework</span><br><span class="line"></span><br><span class="line">SIMULATOR_DIR=$&#123;BUILD_ROOT&#125;/$&#123;CONFIGURATION&#125;-iphonesimulator/$&#123;PROJECT_NAME&#125;.framework</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if [ -d &quot;$&#123;INSTALL_DIR&#125;&quot; ]</span><br><span class="line">then</span><br><span class="line">rm -rf &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line"></span><br><span class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/&quot; &quot;$&#123;INSTALL_DIR&#125;/&quot;</span><br><span class="line">#ditto &quot;$&#123;DEVICE_DIR&#125;/Headers&quot; &quot;$&#123;INSTALL_DIR&#125;/Headers&quot;</span><br><span class="line"></span><br><span class="line">lipo -create &quot;$&#123;DEVICE_DIR&#125;/$&#123;PROJECT_NAME&#125;&quot; &quot;$&#123;SIMULATOR_DIR&#125;/$&#123;PROJECT_NAME&#125;&quot; -output &quot;$&#123;INSTALL_DIR&#125;/$&#123;PROJECT_NAME&#125;&quot;</span><br><span class="line"></span><br><span class="line">#open &quot;$&#123;DEVICE_DIR&#125;&quot;</span><br><span class="line">#open &quot;$&#123;SRCROOT&#125;/Products&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在其 <code>Build Phases</code> - <code>Target Dependencies</code>中，添加 <code>Hello SDK</code>。</p>
+<img src="/2018/11/09/sdks/p2.png">
+<p><div class="imgDiv"><span class="imgBottom">点击+号，选择New run Script添加脚本</span></div><br>为脚本Target做如下配置</p>
+<blockquote>
+<ul>
+<li>Enable Bitcode 设置为NO</li>
+<li>Edit Scheme - Run - Info - Build Configuration <code>Release</code></li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<h5 id="创建Demo工程"><a href="#创建Demo工程" class="headerlink" title="创建Demo工程"></a>创建Demo工程</h5><p>在HelloSDK同目录下，创建StaticSDKDemo工程。<br>  <img src="/2018/11/09/sdks/p3.png"><br>  <div class="imgDiv"><span class="imgBottom">创建工程</span></div><br>并做如下设置</p>
+<blockquote>
+<ul>
+<li>Enable Bitcode 设置为NO</li>
+<li>Deployment Target -9.0</li>
+</ul>
+</blockquote>
+<h5 id="创建workspace"><a href="#创建workspace" class="headerlink" title="创建workspace"></a>创建workspace</h5><p>打开终端， cd 到 StaticSDKDemo目录下，执行pod init，在工程目录下会生成Podfile文件。打开Podfile,输入以下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># platform :ios, &apos;9.0&apos;</span><br><span class="line">workspace &apos;StaticSDKDemo&apos;</span><br><span class="line"></span><br><span class="line">def shared_pods</span><br><span class="line">    pod &apos;AFNetworking&apos;</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line">target &apos;StaticSDKDemo&apos; do</span><br><span class="line">    project &apos;StaticSDKDemo&apos;</span><br><span class="line">    shared_pods</span><br><span class="line">end</span><br><span class="line">target &apos;HelloSDK&apos; do</span><br><span class="line">    project &apos;../HelloSDK/HelloSDK&apos;</span><br><span class="line">    shared_pods</span><br><span class="line">end</span><br></pre></td></tr></table></figure></p>
+<p>在终端种执行pod install,打开生成的workspace。此时可见<br>  <img src="/2018/11/09/sdks/p4.png"><br>  <div class="imgDiv"><span class="imgBottom">工程列表</span></div><br>现在Demo工程和SDK在一个workspace中，已建立了关联，并可共用一个<code>AFNetworking</code>(其他三方库，在 podfile中的 <code>shared_pods</code>中添加即可)。</p>
+<p>现在SDK工程和Demo工程已创建完毕。</p>
+<h4 id="开发-1"><a href="#开发-1" class="headerlink" title="开发"></a>开发</h4><h5 id="SDK中添加代码"><a href="#SDK中添加代码" class="headerlink" title="SDK中添加代码"></a>SDK中添加代码</h5><p>在HelloSDK中创建<code>HSViewController</code>,并编写如下代码。<br>  <img src="/2018/11/09/sdks/p5.png"><br>  <div class="imgDiv"><span class="imgBottom">代码</span></div></p>
+<p>设置SDK公开头文件<br>  <img src="/2018/11/09/sdks/p6.png"><br>  <div class="imgDiv"><span class="imgBottom">设置公开头文件步骤一</span></div><br>在上图中每设置一个公开头文件，都在下图中的<code>.h</code>文件中，都需要引入该头文件。<br>  <img src="/2018/11/09/sdks/p7.png"><br>  <div class="imgDiv"><span class="imgBottom">设置公开头文件步骤二</span></div></p>
+<p>删掉SDK中的资源，后续Bundle中会包含。<br>  <img src="/2018/11/09/sdks/p8.png"><br>  <div class="imgDiv"><span class="imgBottom">删掉资源</span></div></p>
+<h5 id="编译SDK-并将SDK导入到Demo工程中"><a href="#编译SDK-并将SDK导入到Demo工程中" class="headerlink" title="编译SDK,并将SDK导入到Demo工程中"></a>编译SDK,并将SDK导入到Demo工程中</h5><ol>
+<li><p>切换Target为HelloSDK,选中一款模拟器，<code>comand</code> + <code>B</code>,编译</p>
+<blockquote>
+<p>这里选择模拟器，是为了方便用模拟器演示功能。当然也可以选择 <code>Generic iOS Device</code>使之适用于真机。当利用模拟器和<code>Generic iOS Device</code>分别编译后，再利用之前创建的<code>CommonStatic</code>编译（选择<code>Generic iOS Device</code>），便会生成同时适用于真机和模拟器的SDK。</p>
+</blockquote>
+<img src="/2018/11/09/sdks/p9.png">
+<div class="imgDiv"><span class="imgBottom">编译SDK</span></div></li>
+<li><p>编译好后，在Demo工程中，添加SDK<br>选中<code>StaticSDKDemo</code> Target,依次选择<code>Build Phases</code> - <code>Link Binary With Libraries</code>,点击 <code>+</code>号，添加SDK</p>
+<img src="/2018/11/09/sdks/p10.png">
+<p><div class="imgDiv"><span class="imgBottom">引入SDK</span></div></p>
+<h5 id="编译Bundle-并将Bundle导入到Demo工程中"><a href="#编译Bundle-并将Bundle导入到Demo工程中" class="headerlink" title="编译Bundle,并将Bundle导入到Demo工程中"></a>编译Bundle,并将Bundle导入到Demo工程中</h5></li>
+</ol>
+<ul>
+<li>在<code>HelloSDK</code>工程中，选中<code>HelloSDKBundle</code>,在其<code>copy Bundle Resources</code>中，点击<code>+</code>号，添加资源<img src="/2018/11/09/sdks/p11.png">
+<div class="imgDiv"><span class="imgBottom">添加资源</span></div></li>
+<li>编译Bundle,并在其<code>products</code>目录中,<code>show in finder</code>找到，复制到Demo工程目录<img src="/2018/11/09/sdks/p12.png">
+<div class="imgDiv"><span class="imgBottom">编译Bundle</span></div><br>  <img src="/2018/11/09/sdks/p13.png"><br>  <div class="imgDiv"><span class="imgBottom">复制到Demo工程目录</span></div></li>
+<li>在Demo 工程的 <code>Copy Bundle Resources</code>中，点击<code>+</code>号引入Bundle（在弹出的框中，可不选复制）  <img src="/2018/11/09/sdks/p14.png">
+  <div class="imgDiv"><span class="imgBottom">引入Bundle</span></div>
+
+</li>
+</ul>
+<h5 id="在Demo工程中，添加代码查看效果"><a href="#在Demo工程中，添加代码查看效果" class="headerlink" title="在Demo工程中，添加代码查看效果"></a>在Demo工程中，添加代码查看效果</h5><p>添加如下代码，运行模拟器，便查看到效果了。<br>    <img src="/2018/11/09/sdks/p15.png"><br>    <div class="imgDiv"><span class="imgBottom">添加代码</span></div><br>        <img src="/2018/11/09/sdks/p16.png"><br>        <div class="imgDiv"><span class="imgBottom">效果图</span></div><br>同时，当我们在SDK里面的点击事件里，设置断点时，是有效的，这就方便我们的调试。<br>        <img src="/2018/11/09/sdks/p17.png"><br>        <div class="imgDiv"><span class="imgBottom">设置断点</span></div></p>
+<blockquote>
+<p>当我们在SDK里更改了代码时，需要编译一遍SDK,在Demo工程中<code>Link Binary With Libraries</code>,点击<code>-</code>去掉SDK,直接运行Demo工程就有效果了；如果再次更改，点击<code>+</code>添加SDK，运行工程就有效果（原因未知）。如果更改了<code>xib</code>.新增了图片时，就必须重新编译Bundle,并用新的覆盖掉原来老的，才会产生效果。</p>
+</blockquote>
+<p>以上便是SDK静态库开发的全部内容。</p>
+<hr>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><h4 id="AFNetWorking应用"><a href="#AFNetWorking应用" class="headerlink" title="AFNetWorking应用"></a>AFNetWorking应用</h4><p>在SDK中新建<code>AFAppDotNetAPIClient</code><br>        <img src="/2018/11/09/sdks/p18.png"><br>        <div class="imgDiv"><span class="imgBottom">.h文件代码</span></div><br>        <img src="/2018/11/09/sdks/p19.png"><br>   <div class="imgDiv"><span class="imgBottom">.m文件代码</span></div><br>在<code>HSViewController</code>中添加如下代码，<br>    <img src="/2018/11/09/sdks/p20.png"><br>   <div class="imgDiv"><span class="imgBottom">网络请求</span></div></p>
+<p>编译SDK,并按照上面说的，在Demo工程中<code>Link Binary With Libraries</code>,点击<code>-</code>去掉SDK,直接运行Demo工程便见到Label上显示了一句古诗。</p>
+<h4 id="SDK脚本导出"><a href="#SDK脚本导出" class="headerlink" title="SDK脚本导出"></a>SDK脚本导出</h4><p>分别将sdk在模拟器(随便选一款模拟器)和<code>Generic iOS Device</code>下编译 (选择该target,<code>command + B</code>)。这会编译生成2个SDK，一个适用于模拟器，一个适用于真机。<br>    <img src="/2018/11/09/sdks/p21.png"><br>   <div class="imgDiv"><span class="imgBottom">模拟器编译</span></div><br>       <img src="/2018/11/09/sdks/p22.png"><br>      <div class="imgDiv"><span class="imgBottom">Generic iOS Device编译</span></div><br>选择Target选为<code>CommonStatic</code>编译，这会将上面生成的2个SDK合成一个，编译完成后，会发现在项目根目录会生成Products文件夹，便是所制作的sdk<br>       <img src="/2018/11/09/sdks/p23.png"><br>      <div class="imgDiv"><span class="imgBottom">脚本编译</span></div><br>       <img src="/2018/11/09/sdks/p24.png"><br>      <div class="imgDiv"><span class="imgBottom">生成最终SDK</span></div></p>
+<h4 id="利用spec文件安装SDK及其依赖"><a href="#利用spec文件安装SDK及其依赖" class="headerlink" title="利用spec文件安装SDK及其依赖"></a>利用spec文件安装SDK及其依赖</h4><blockquote>
+<p>现在SDK已经开发完了，需要交给客户的开发人员使用了。且我们的SDK需要依赖AFNetWorking。</p>
+</blockquote>
+<ol>
+<li><p>创建名为<code>cusProject</code>工程,假定为客户的项目工程，且采用CocoPods管理。注意修改其<code>Deployment Target</code>和 <code>bit code</code></p>
+  <img src="/2018/11/09/sdks/p25.png">
+   <div class="imgDiv"><span class="imgBottom">创建客户工程</span></div>
+</li>
+<li><p>在工程目录下新建<code>HelloSDK</code>文件夹，并将上面脚本生成的SDK拷贝到该文件夹下，编译Bundle也拷贝到该文件夹下。</p>
+  <img src="/2018/11/09/sdks/p26.png">
+   <div class="imgDiv"><span class="imgBottom">SDK和Bundle</span></div>
+</li>
+<li><p>打开终端，cd到<code>HelloSDK</code>文件夹下，执行如下命令，创建spec文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod spec create HelloSDK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开生成的<code>podspec</code>文件，删除里面的全部内容，并添加如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">Pod::Spec.new do |spec|</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  spec.name         = &quot;HelloSDK&quot;</span><br><span class="line">  spec.version      = &quot;1.0.0&quot;</span><br><span class="line">  spec.summary      = &quot;A short description of HelloSDk&quot;</span><br><span class="line">  spec.description  = &lt;&lt;-DESCRIPTION</span><br><span class="line">pod spec create xx</span><br><span class="line">DESCRIPTION</span><br><span class="line"></span><br><span class="line">  spec.homepage     = &quot;http://www.baidu.com&quot;</span><br><span class="line">  spec.license      = &quot;None&quot;</span><br><span class="line">  spec.author       = &#123; &quot;wutao&quot; =&gt; &quot;359424792@qq.com&quot; &#125;</span><br><span class="line">  spec.source       = &#123; :path =&gt; &apos;/&apos;&#125;</span><br><span class="line"></span><br><span class="line">  spec.static_framework = true</span><br><span class="line">  spec.requires_arc = true</span><br><span class="line">  spec.platform     = :ios, &apos;9.0&apos;</span><br><span class="line">  spec.ios.vendored_frameworks = &apos;HelloSDK.framework&apos;</span><br><span class="line">  spec.resource  = &quot;HelloSDKBundle.bundle&quot;</span><br><span class="line"></span><br><span class="line">  spec.dependency &apos;AFNetworking&apos;</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote><p>下图中 <code>spec.name         = &quot;HelloSDk&quot;</code>,k应该改为大写的K</p>
+</blockquote>
+</li>
+</ol>
+<img src="/2018/11/09/sdks/p27.png">
+<div class="imgDiv"><span class="imgBottom">编写spec文件，ruby语言</span></div>
+
+<ol start="5">
+<li><p>打开<code>cusProject</code>工程，在Podfile文件中按图示添加：</p>
+  <img src="/2018/11/09/sdks/p28.png">
+   <div class="imgDiv"><span class="imgBottom">编写Podfile</span></div>
+
+</li>
+</ol>
+<p>打开终端，cd到项目目录下，执行<code>pod install</code>；现在<code>HelloSDK</code>和<code>AFNetworking</code>都添加到项目中了。此时<code>HelloSDK</code>和客户的项目就可以共用一份<code>AFNetworking</code><br>     <img src="/2018/11/09/sdks/p29.png"><br>      <div class="imgDiv"><span class="imgBottom">安装SDK和依赖</span></div></p>
+<ol start="6">
+<li><p>在主项目中编写代码测试。<br>在<code>ViewController</code>中添加如下代码，运行模拟器。</p>
+  <img src="/2018/11/09/sdks/p30.png">
+   <div class="imgDiv"><span class="imgBottom">vc中逻辑</span></div>
+
+ <img src="/2018/11/09/sdks/p31.gif">
+   <div class="imgDiv"><span class="imgBottom">效果图</span></div>
+
+</li>
+</ol>
+<blockquote>
+<p>以上便是SDK使用的全过程，我们已实现了SDK和项目主工程共用一份AFNetworing，且SDK和Bundle交由Pods管理。</p>
+</blockquote>
+<hr>
+<p>开发SDK是选择动态库还是静态库呢？</p>
+<blockquote>
+<ul>
+<li>静态SDK不能嵌套。见<a href="https://www.jianshu.com/p/874e178cdc9d" target="_blank" rel="noopener">iOS中Framework Library嵌套使用</a>。因此，当SDK需要引用其他SDK，且不希望暴露给用户时，只能采用<a href="https://www.jianshu.com/p/0b00d27ed2f5" target="_blank" rel="noopener">动态库</a>的开发方式。</li>
+<li>静态库开发需要编写spec文件，且需要告诉客户如何导入，若嫌其麻烦时可采用动态库开发。</li>
+<li>动态库上架需要删除其X86,i386模拟器架构，若嫌其麻烦可采用静态库开发。</li>
+<li>若SDK和项目中用到相同的三方库(如：AFNetworking)。动态库：工程和项目中可以存在2份AFNetworking,静态库只会存在一份，若嫌2份代码重复占存储资源时，可采用静态库开发。</li>
+<li>主流SDK均采用静态库开发。环信采用动态库开发。</li>
+</ul>
+</blockquote>
+<p>区分一个sdk是动态库还是静态库？</p>
+<blockquote>
+<p>在项目中， 以<code>Embedded Binaries</code> 方式导入为动态库；以<code>Link Binary With Libraries</code> 方式导入为静态库。</p>
+</blockquote>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/11/02/sdkd/" title="iOS SDK开发(动态SDK)">iOS SDK开发(动态SDK)</a></h2>
+                <p class="excerpt">
+                
+                
+有这样一个需求：开发一个SDK，SDK需要用到AFNetworking等常用第三方库，且主项目中也会用到同样的三方库。
+
+  一直以来开发iOS SDK的常用方式是使用静态库开发，当SDK中需要用到类似AFNetWorking且主项目中也会用到AFNetWorking时，XCode会提示dupli
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-11-02T13:08:01.000Z" class="post-list__meta--date date">2018-11-02</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/02/sdkd/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2018 吴涛
+       
+    </span>
+    <span class="footer__copyright">
+            
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c64559abca2b05ba14336daa074499f1";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

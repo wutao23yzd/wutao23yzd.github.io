@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>苹果审核2.1解决方案 | 江水涛涛</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="iOS程序员">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="苹果审核2.1解决方案 | 江水涛涛">
+    <meta name="twitter:description" content="iOS程序员">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="苹果审核2.1解决方案 | 江水涛涛">
+    <meta property="og:description" content="iOS程序员">
+
+    
+    <meta name="author" content="吴涛">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar-small.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/03/23/appreview/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 江水涛涛 的主页"><img src="/images/wechat.jpeg" width="80" alt="江水涛涛 logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for 江水涛涛">江水涛涛</a></h1>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">我那该死的无处安放的魅力</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">文字</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme" class="blog-button">关于</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/wutao23yzd" title="GitHub" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-03-23T01:49:00.000Z" class="post-list__meta--date date">2018-03-23</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">苹果审核2.1解决方案</h1>
+  </header>
+
+  <section class="post">
+    <blockquote><p>近几个月来，在苹果审核中，只要应用中涉及，支付，定位等涉及用户隐私的功能，苹果都会部分青红皂白的打回来，这其实很可能不是APP本身的原因，只是苹果要你自查。</p>
+</blockquote>
+<ul>
+<li><p>原文</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Guideline 2.1 - Information Needed</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">This type of app has been identified as one that may violate one or more of the following App Store Review Guidelines. Specifically, these types of apps often:</span><br><span class="line"></span><br><span class="line">1.1.6 - Include false information, features, or misleading metadata.</span><br><span class="line">2.3.0 - Undergo significant concept changes after approval</span><br><span class="line">2.3.1 - Have hidden or undocumented features, including hidden &quot;switches&quot; that redirect to a gambling or lottery website</span><br><span class="line">3.1.1 - Use payment mechanisms other than in-app purchase to unlock features or functionality in the app</span><br><span class="line">4.3.0 - Are a duplicate of another app or are conspicuously similar to another app</span><br><span class="line">5.2.1 - Were not submitted by the legal entity that owns and is responsible for offering any services provided by the app</span><br><span class="line">5.3.4 - Do not have the necessary licensing and permissions for all the locations where the app is used</span><br><span class="line"></span><br><span class="line">Before we can continue with our review, please confirm that this app does not violate any of the above guidelines. You may reply to this message in Resolution Center or the App Review Information section in iTunes Connect to verify this app’s compliance.</span><br><span class="line"></span><br><span class="line">Given the tendency for apps of this type to violate the aforementioned guidelines, this review will take additional time. If at any time we discover that this app is in violation of these guidelines, the app will be rejected and removed from the App Store, and it may result in the termination of your Apple Developer Program account.</span><br><span class="line"></span><br><span class="line">Should you choose to resubmit this app without confirming this app’s compliance, the next submission of this app will still require a longer review time. Additionally, this app will not be eligible for an expedited review until we have received your confirmation.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决方案</p>
+<ol>
+<li><p>现在 resolution center中回复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">尊敬的苹果审核团队：</span><br><span class="line"></span><br><span class="line">感谢您对我们的App（text）耐心审核， 对于您提到的我们可能违反的7个审核条款， 我们的研发团队经过认真自查和研究， 我们现在对此回复如下：</span><br><span class="line"></span><br><span class="line">1.1.6：我们绝对没有包含任何的虚假信息和误导用户的功能，全都是真实的。</span><br><span class="line">2.3.0：我们没有在通过后修改任何概念和功能。</span><br><span class="line">2.3.1：我们没有切换到任何赌博或彩票的网站。</span><br><span class="line">3.1.1：我们没有使用应用程序内购买以外的支付机制解锁应用程序中的功能或功能</span><br><span class="line">。</span><br><span class="line">4.3.0：我们的App内容不存在抄袭或者大量相似。</span><br><span class="line">5.2.1：我们的App并没有法人实体和版权的风险。</span><br><span class="line">5.3.4：我们的App定位功能在用户首次安装时会以弹窗的形式提醒用户，请点击“允许”以允许访问。若不允许，纽格茵APP”将无法获取定位当前位置,搜索地址和添加收货地址。</span><br><span class="line">希望苹果审核团队能继续审核，感谢。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Dear Apple Review Team:</span><br><span class="line">	Thank you for your interest in our App (“text”) patient review, for you mentioned we may violate audit clause 7, our  team after careful inspection and research, we now reply as follows:</span><br><span class="line">1.1.6: we never contain any false information and mislead the function of the user, all are real.</span><br><span class="line">2.3.0: we don&apos;t have after through modifying any concept and function.</span><br><span class="line">2.3.1: we don&apos;t have to switch to any gambling or lottery website.</span><br><span class="line">3.1.1: we don&apos;t use the application for payment mechanism outside the unlock function or functions of the application.</span><br><span class="line">4.3.0: our App content there is no copying or a similar.</span><br><span class="line">5.2.1: our App and there is no legal entity and the risk of copyright.</span><br><span class="line">5.3.4: our App positioning function in the user first installation will be in the form of a popup window to alert users, please click &quot;allow&quot; to allow access.If not allowed,  APP &quot;will not be able to locate the current position, search address and add a shipping address.</span><br><span class="line">Hope apple audit team can continue to audit, thank you.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>iTunes Connect -&gt;联系我们</p>
+<img src="/2018/03/23/appreview/pic1.png">
+<p><div class="imgDiv"><span class="imgBottom">图1</span></div><br>在<code>Please explain the question you have regarding your app rejection:</code>一栏 同<code>resolution center</code>一样的回复</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">尊敬的苹果审核团队：</span><br><span class="line"></span><br><span class="line">感谢您对我们的App（text）耐心审核， 对于您提到的我们可能违反的7个审核条款， 我们的研发团队经过认真自查和研究， 我们现在对此回复如下：</span><br><span class="line"></span><br><span class="line">1.1.6：我们绝对没有包含任何的虚假信息和误导用户的功能，全都是真实的。</span><br><span class="line">2.3.0：我们没有在通过后修改任何概念和功能。</span><br><span class="line">2.3.1：我们没有切换到任何赌博或彩票的网站。</span><br><span class="line">3.1.1：我们没有使用应用程序内购买以外的支付机制解锁应用程序中的功能或功能</span><br><span class="line">。</span><br><span class="line">4.3.0：我们的App内容不存在抄袭或者大量相似。</span><br><span class="line">5.2.1：我们的App并没有法人实体和版权的风险。</span><br><span class="line">5.3.4：我们的App定位功能在用户首次安装时会以弹窗的形式提醒用户，请点击“允许”以允许访问。若不允许，纽格茵APP”将无法获取定位当前位置,搜索地址和添加收货地址。</span><br><span class="line">希望苹果审核团队能继续审核，感谢。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Dear Apple Review Team:</span><br><span class="line">	Thank you for your interest in our App (“text”) patient review, for you mentioned we may violate audit clause 7, our  team after careful inspection and research, we now reply as follows:</span><br><span class="line">1.1.6: we never contain any false information and mislead the function of the user, all are real.</span><br><span class="line">2.3.0: we don&apos;t have after through modifying any concept and function.</span><br><span class="line">2.3.1: we don&apos;t have to switch to any gambling or lottery website.</span><br><span class="line">3.1.1: we don&apos;t use the application for payment mechanism outside the unlock function or functions of the application.</span><br><span class="line">4.3.0: our App content there is no copying or a similar.</span><br><span class="line">5.2.1: our App and there is no legal entity and the risk of copyright.</span><br><span class="line">5.3.4: our App positioning function in the user first installation will be in the form of a popup window to alert users, please click &quot;allow&quot; to allow access.If not allowed,  APP &quot;will not be able to locate the current position, search address and add a shipping address.</span><br><span class="line">Hope apple audit team can continue to audit, thank you.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>3.申请加急审核（可要可不要）</p>
+<img src="/2018/03/23/appreview/pic2.png">
+<p><div class="imgDiv"><span class="imgBottom">图2</span></div><br>在事由一栏，填写和<code>resolution center</code>一样的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">尊敬的苹果审核团队：</span><br><span class="line"></span><br><span class="line">感谢您对我们的App（text）耐心审核， 对于您提到的我们可能违反的7个审核条款， 我们的研发团队经过认真自查和研究， 我们现在对此回复如下：</span><br><span class="line"></span><br><span class="line">1.1.6：我们绝对没有包含任何的虚假信息和误导用户的功能，全都是真实的。</span><br><span class="line">2.3.0：我们没有在通过后修改任何概念和功能。</span><br><span class="line">2.3.1：我们没有切换到任何赌博或彩票的网站。</span><br><span class="line">3.1.1：我们没有使用应用程序内购买以外的支付机制解锁应用程序中的功能或功能</span><br><span class="line">。</span><br><span class="line">4.3.0：我们的App内容不存在抄袭或者大量相似。</span><br><span class="line">5.2.1：我们的App并没有法人实体和版权的风险。</span><br><span class="line">5.3.4：我们的App定位功能在用户首次安装时会以弹窗的形式提醒用户，请点击“允许”以允许访问。若不允许，纽格茵APP”将无法获取定位当前位置,搜索地址和添加收货地址。</span><br><span class="line">希望苹果审核团队能继续审核，感谢。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Dear Apple Review Team:</span><br><span class="line">	Thank you for your interest in our App (“text”) patient review, for you mentioned we may violate audit clause 7, our  team after careful inspection and research, we now reply as follows:</span><br><span class="line">1.1.6: we never contain any false information and mislead the function of the user, all are real.</span><br><span class="line">2.3.0: we don&apos;t have after through modifying any concept and function.</span><br><span class="line">2.3.1: we don&apos;t have to switch to any gambling or lottery website.</span><br><span class="line">3.1.1: we don&apos;t use the application for payment mechanism outside the unlock function or functions of the application.</span><br><span class="line">4.3.0: our App content there is no copying or a similar.</span><br><span class="line">5.2.1: our App and there is no legal entity and the risk of copyright.</span><br><span class="line">5.3.4: our App positioning function in the user first installation will be in the form of a popup window to alert users, please click &quot;allow&quot; to allow access.If not allowed,  APP &quot;will not be able to locate the current position, search address and add a shipping address.</span><br><span class="line">Hope apple audit team can continue to audit, thank you.</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="只要一天不上架，按照2和3，天天发（苹果会回复），直到上线，我的应用按照这种方式，一周就上架了"><a href="#只要一天不上架，按照2和3，天天发（苹果会回复），直到上线，我的应用按照这种方式，一周就上架了" class="headerlink" title="只要一天不上架，按照2和3，天天发（苹果会回复），直到上线，我的应用按照这种方式，一周就上架了"></a>只要一天不上架，按照2和3，天天发（苹果会回复），直到上线，我的应用按照这种方式，一周就上架了</h2>
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Newer Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/11/02/sdkd/" title="iOS SDK开发(动态SDK)">iOS SDK开发(动态SDK)</a></h2>
+                <p class="excerpt">
+                
+                
+有这样一个需求：开发一个SDK，SDK需要用到AFNetworking等常用第三方库，且主项目中也会用到同样的三方库。
+
+  一直以来开发iOS SDK的常用方式是使用静态库开发，当SDK中需要用到类似AFNetWorking且主项目中也会用到AFNetWorking时，XCode会提示dupli
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-11-02T13:08:01.000Z" class="post-list__meta--date date">2018-11-02</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/02/sdkd/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2017/08/25/applaunch/" title="iOS App图标尺寸及启动页尺寸">iOS App图标尺寸及启动页尺寸</a></h2>
+                <p class="excerpt">
+                
+                当我们写一个项目的时候，首先需要设置app图标尺寸和启动页尺寸
+
+
+App图标尺寸iOS项目设置图标时，要设置3种样式的图标，分别是spotlight,settings,app
+spotlight
+appicon
+settings目前对图标只考虑二倍屏，和三倍屏，见下表
+app图标尺寸因此，各图标尺
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-08-25T11:43:50.000Z" class="post-list__meta--date date">2017-08-25</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2017/08/25/applaunch/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2018 吴涛
+       
+    </span>
+    <span class="footer__copyright">
+            
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c64559abca2b05ba14336daa074499f1";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

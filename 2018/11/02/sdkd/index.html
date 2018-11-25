@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="z">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>iOS SDK开发(动态SDK) | 江水涛涛</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="iOS程序员">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="iOS SDK开发(动态SDK) | 江水涛涛">
+    <meta name="twitter:description" content="iOS程序员">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="iOS SDK开发(动态SDK) | 江水涛涛">
+    <meta property="og:description" content="iOS程序员">
+
+    
+    <meta name="author" content="吴涛">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/avatar-small.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+
+    <link rel="canonical" href="http://yoursite.com/2018/11/02/sdkd/"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/background-cover.jpg)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 江水涛涛 的主页"><img src="/images/wechat.jpeg" width="80" alt="江水涛涛 logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for 江水涛涛">江水涛涛</a></h1>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">我那该死的无处安放的魅力</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="Visit the blog" class="blog-button">文字</a></li>
+            
+              <li class="navigation__item"><a href="/aboutme" class="blog-button">关于</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/wutao23yzd" title="GitHub" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-purple"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2018-11-02T13:08:01.000Z" class="post-list__meta--date date">2018-11-02</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <span class="page-pv">
+       Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">iOS SDK开发(动态SDK)</h1>
+  </header>
+
+  <section class="post">
+    <blockquote>
+<p>有这样一个需求：开发一个SDK，SDK需要用到AFNetworking等常用第三方库，且主项目中也会用到同样的三方库。</p>
+</blockquote>
+<p>  一直以来开发iOS SDK的常用方式是使用<code>静态库</code>开发，当SDK中需要用到类似<code>AFNetWorking</code>且主项目中也会用到<code>AFNetWorking</code>时，XCode会提示<code>duplicate symbol</code>,且这个问题一直没有有效的处理方式。类似需求，查询网上资料，什么<code>cocoapods</code>私有库，公有库，结果越扯越远。</p>
+<p>其实，早在WWDC2014苹果在iOS上便开放了动态库。使用动态库便可以解决上面静态库所面临的问题。我公司采用动态库开发SDK已迭代多个版本，且已成功上架。本文以封装<code>MBProgressHUD</code>为例,介绍SDK开发，脚本和bundle的使用。github地址 <a href="https://github.com/wutao23yzd/SDKDemo。" target="_blank" rel="noopener">https://github.com/wutao23yzd/SDKDemo。</a></p>
+<h3 id="SDK动态库开发"><a href="#SDK动态库开发" class="headerlink" title="SDK动态库开发"></a>SDK动态库开发</h3><h5 id="1、创建动态库，取名为SDKDemo"><a href="#1、创建动态库，取名为SDKDemo" class="headerlink" title="1、创建动态库，取名为SDKDemo"></a>1、创建动态库，取名为<code>SDKDemo</code></h5>  <img src="/2018/11/02/sdkd/p1.png">
+  <div class="imgDiv"><span class="imgBottom">1</span></div>
+
+<h5 id="2、在SDK中导入MBProgressHUD库，并创建SDKDemoViewController"><a href="#2、在SDK中导入MBProgressHUD库，并创建SDKDemoViewController" class="headerlink" title="2、在SDK中导入MBProgressHUD库，并创建SDKDemoViewController"></a>2、在SDK中导入<code>MBProgressHUD</code>库，并创建<code>SDKDemoViewController</code></h5>  <img src="/2018/11/02/sdkd/p2.png">
+ <div class="imgDiv"><span class="imgBottom">代码目录</span></div><br>在<code>SDKDemoViewController</code>中书写如下代码<br><br>  <img src="/2018/11/02/sdkd/p3.jpg"><br> <div class="imgDiv"><span class="imgBottom">3</span></div>
+
+<p>配置Xcode</p>
+<blockquote>
+<ul>
+<li>TARGETS -Build Settings - Build Active Architchture Only 设置为No</li>
+<li>TARGETS-&gt;Build Settings-&gt;Other Linker Flags,添加 <code>-ObjC</code></li>
+<li>TARGETS-&gt;Build Settings-&gt;Enable Bitcode 设置为No</li>
+<li><code>Edit scheme</code>-<code>Run</code>-<code>Build Configuration</code>设置为<code>Release</code></li>
+</ul>
+</blockquote>
+  <img src="/2018/11/02/sdkd/p4.png">
+ <div class="imgDiv"><span class="imgBottom">设置 Build Configuration</span></div>
+
+<p>设置公开头文件<br>默认的公开头文件为<code>SDKDemo.h</code>,只需要设置<code>SDKDemoViewController.h</code><br>  <img src="/2018/11/02/sdkd/p5.png"><br> <div class="imgDiv"><span class="imgBottom">设置公开头文件</span></div><br>每设置一个公开头文件，都需要在<code>SDKDemo.h</code>文件中按如下方式引入<br>  <img src="/2018/11/02/sdkd/p6.png"><br> <div class="imgDiv"><span class="imgBottom">引头文件</span></div></p>
+<h5 id="3、创建bundle"><a href="#3、创建bundle" class="headerlink" title="3、创建bundle"></a>3、创建bundle</h5><ol>
+<li><p>sdk 中<code>xib</code>,图片等一切资源都需要添加到Bundle中。<br>点击<code>File</code>-<code>New</code>-<code>Target</code>-<code>macOS</code>-<code>Bundle</code>,取名为<code>SDKDemoBundle</code>。</p>
+<img src="/2018/11/02/sdkd/p7.png">
+<div class="imgDiv"><span class="imgBottom">添加bundle</span></div>
+</li>
+<li><p>按照下图，将xib添加到bundle中。后续的图片等资源都需要按种方式添加。</p>
+<img src="/2018/11/02/sdkd/p8.png">
+<p><div class="imgDiv"><span class="imgBottom">4</span></div><br>配置Bundle</p>
+<blockquote>
+<ul>
+<li>TARGETS -SDKDemoBundle-BuildSettings-Base SDK 设置 <code>iOS</code></li>
+<li>Build Active Architecture Only 设置为<code>NO</code></li>
+<li>Enable Bitcode 设置为<code>NO</code></li>
+<li>清除<code>Installation Directory</code>路径信息</li>
+<li><code>Skip install</code>设置为YES</li>
+<li><code>COMBINE_HIDPI_IMAGES</code>设置为NO</li>
+<li><code>Edit scheme</code>-<code>Run</code>-<code>Build Configuration</code>设置为<code>Release</code></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h5 id="4、编译Bundle，并导入到SDK中"><a href="#4、编译Bundle，并导入到SDK中" class="headerlink" title="4、编译Bundle，并导入到SDK中"></a>4、编译Bundle，并导入到SDK中</h5><p>编译Bundle,Xcode按如下方式选择Target为SDKDemoBundle，<code>command + B</code>。编译后，在<code>products</code>目录下，会发现生成的Bundle<br> <img src="/2018/11/02/sdkd/p9.png"><br>sdk中以如下方式，引入刚编译的Bundle<br> <img src="/2018/11/02/sdkd/p10.png"><br> <div class="imgDiv"><span class="imgBottom">5</span></div><br>删除SDK里面的多余xib，bundle中已经存在该xib了<br>  <img src="/2018/11/02/sdkd/p11.png"><br> <div class="imgDiv"><span class="imgBottom">6</span></div><br>在<code>SDKDemoViewController.m</code>中添加如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">- (instancetype)init &#123;</span><br><span class="line">    self = [super initWithNibName:@&quot;SDKDemoViewController&quot; bundle:[NSBundle bundleWithURL:[[NSBundle mainBundle] URLForResource:@&quot;SDKDemoBundle&quot; withExtension:@&quot;bundle&quot;]]];</span><br><span class="line">    if (self) &#123;</span><br><span class="line">        return self;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="5、为SDK添加脚本"><a href="#5、为SDK添加脚本" class="headerlink" title="5、为SDK添加脚本"></a>5、为SDK添加脚本</h5><blockquote>
+<p>SDK以模拟器编译时，会生成对应模拟器架构的SDK( i386,x86_64);以<code>Generic iOS Device</code>编译时，会生成真机架构的SDK(arm7,arm64)。脚本的作用是将这两个sdk合成一个，使的同时适用于真机和模拟器。</p>
+</blockquote>
+<ul>
+<li><p><code>File</code>-<code>New</code>-<code>Target</code>-<code>Cross-platform</code>-<code>Aggregate</code>，取名为<code>CommonDylib</code>。<br>在其<code>Target Dependencies</code>中`添加SDKDemo</p>
+<img src="/2018/11/02/sdkd/p12.png">
+<div class="imgDiv"><span class="imgBottom">添加SDKDemo</span></div>
+</li>
+<li><p>点击下图中的 + 号，选择run script,添加如下脚本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;$&#123;ACTION&#125;&quot; = &quot;build&quot; ]</span><br><span class="line">then</span><br><span class="line">INSTALL_DIR=$&#123;SRCROOT&#125;/Products/$&#123;PROJECT_NAME&#125;.framework</span><br><span class="line"></span><br><span class="line">DEVICE_DIR=$&#123;BUILD_ROOT&#125;/$&#123;CONFIGURATION&#125;-iphoneos/$&#123;PROJECT_NAME&#125;.framework</span><br><span class="line"></span><br><span class="line">SIMULATOR_DIR=$&#123;BUILD_ROOT&#125;/$&#123;CONFIGURATION&#125;-iphonesimulator/$&#123;PROJECT_NAME&#125;.framework</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if [ -d &quot;$&#123;INSTALL_DIR&#125;&quot; ]</span><br><span class="line">then</span><br><span class="line">rm -rf &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">mkdir -p &quot;$&#123;INSTALL_DIR&#125;&quot;</span><br><span class="line"></span><br><span class="line">cp -R &quot;$&#123;DEVICE_DIR&#125;/&quot; &quot;$&#123;INSTALL_DIR&#125;/&quot;</span><br><span class="line">#ditto &quot;$&#123;DEVICE_DIR&#125;/Headers&quot; &quot;$&#123;INSTALL_DIR&#125;/Headers&quot;</span><br><span class="line"></span><br><span class="line">lipo -create &quot;$&#123;DEVICE_DIR&#125;/$&#123;PROJECT_NAME&#125;&quot; &quot;$&#123;SIMULATOR_DIR&#125;/$&#123;PROJECT_NAME&#125;&quot; -output &quot;$&#123;INSTALL_DIR&#125;/$&#123;PROJECT_NAME&#125;&quot;</span><br><span class="line"></span><br><span class="line">#open &quot;$&#123;DEVICE_DIR&#125;&quot;</span><br><span class="line">#open &quot;$&#123;SRCROOT&#125;/Products&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<img src="/2018/11/02/sdkd/p13.png">
+<div class="imgDiv"><span class="imgBottom">脚本</span></div></li>
+<li><p>设置<code>Edit scheme</code>-<code>Run</code>-<code>Build Configuration</code>设置为<code>Release</code></p>
+<h5 id="6、编译SDK"><a href="#6、编译SDK" class="headerlink" title="6、编译SDK"></a>6、编译SDK</h5><p>分别将sdk在模拟器(随便选一款模拟器)和<code>Generic iOS Device</code>下编译 (选择该target,<code>command + B</code>)。这会编译生成2个SDK，一个适用于模拟器，一个适用于真机。</p>
+<img src="/2018/11/02/sdkd/p14.png">
+<div class="imgDiv"><span class="imgBottom">SDK模拟器</span></div>
+
+<img src="/2018/11/02/sdkd/p15.png">
+<div class="imgDiv"><span class="imgBottom">Generic iOS Device</span></div>
+
+</li>
+</ul>
+<p>选择Target选为<code>CommonDylib</code>编译，这会将上面生成的2个SDK合成一个，编译完成后，会发现在项目根目录会生成<code>Products</code>文件夹，便是所制作的sdk<br>  <img src="/2018/11/02/sdkd/p16.png"><br> <div class="imgDiv"><span class="imgBottom">生成SDK</span></div></p>
+<h5 id="7、创建测试工程，导入SDK、bundle和MBProgressHUD库"><a href="#7、创建测试工程，导入SDK、bundle和MBProgressHUD库" class="headerlink" title="7、创建测试工程，导入SDK、bundle和MBProgressHUD库"></a>7、创建测试工程，导入SDK、bundle和<code>MBProgressHUD</code>库</h5>  <img src="/2018/11/02/sdkd/p17.png">
+<p> <div class="imgDiv"><span class="imgBottom">test工程</span></div><br>需要注意的是，</p>
+<ul>
+<li>bundle在framework下,需要将其<code>复制</code>出来导入到工程中。<img src="/2018/11/02/sdkd/p18.png">
+<div class="imgDiv"><span class="imgBottom">bundle</span></div></li>
+<li>sdk的导入方式如下。动态库的导入方式均是这种方式。<img src="/2018/11/02/sdkd/p19.png">
+<div class="imgDiv"><span class="imgBottom">SDK导入</span></div><br>运行工程，查看效果<img src="/2018/11/02/sdkd/p20.gif">
+<div class="imgDiv"><span class="imgBottom">sdk.gif</span></div><br>可以看到虽然sdk和主项目中，含有相同的三方库，但并没有报错。</li>
+</ul>
+<h5 id="7、上架APPStore"><a href="#7、上架APPStore" class="headerlink" title="7、上架APPStore"></a>7、上架APPStore</h5><p>采用动态库开发，上传appstore时需要将i386 x86_64两个平台删除后，才能正常提交。删除方式参考 《<a href="http://docs.easemob.com/im/300iosclientintegration/20iossdkimport" target="_blank" rel="noopener">http://docs.easemob.com/im/300iosclientintegration/20iossdkimport</a> 集成动态库上传AppStore》。<br><code>cd</code> 到framework的当前目录下 利用lipo -info SDKDemo.framework/SDKDemo查看支持的架构。</p>
+<blockquote>
+<ul>
+<li>arm7: 在支持iOS7之前的设备上使用</li>
+<li>arm7s: 在iPhone5和iPhone5C上使用</li>
+<li>arm64: 在iPhone5S以上的64位ARM处理器上使用</li>
+<li>i386: 在32位模拟器上使用</li>
+<li>x86_64: 在64位模拟器上使用<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">// xx 代表framework的名字</span><br><span class="line">lipo xx.framework/xx   // 查看framework支持的架构</span><br><span class="line"></span><br><span class="line">// 输出 armv7</span><br><span class="line">lipo xx.framework/xx -thin armv7 -output xx_armv7</span><br><span class="line">// 输出 arm64</span><br><span class="line">lipo xx.framework/xx -thin arm64 -output xx_arm64</span><br><span class="line">// 合并</span><br><span class="line">lipo -create xx_armv7 xx_arm64 -output xx</span><br><span class="line">// 移动覆盖</span><br><span class="line">mv xx xx.framework/</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>删除后，查看sdk支持的架构时 只有<code>arm7</code>和<code>arm64</code>，没有<code>arm7s</code>。查询了百度地图等主流SDK后均没有对arm7s提供支持，具体原因未知。运行工程时，Xcode会打印一系列警告，不影响上架，具体原因未知。</p>
+<hr>
+<p>参考文章</p>
+<ul>
+<li><a href="https://www.cnblogs.com/wfwenchao/p/5577789.html" target="_blank" rel="noopener">iOS 使用动态库</a></li>
+<li><a href="http://www.cocoachina.com/ios/20180712/24130.html" target="_blank" rel="noopener">包含 Bundle 资源的 framework 的正确打包方式</a></li>
+<li><a href="http://www.ifelseboy.com/2017/02/15/sdkkai-fa-jing-yan-fen-xiang/" target="_blank" rel="noopener">SDK开发经验分享</a></li>
+<li><a href="https://xuanliao.gitbooks.io/ios-zaji/content/zhi_zuo_framework.html" target="_blank" rel="noopener">制作静态Framework</a></li>
+<li><a href="https://www.gaoshilei.com/2016/11/17/Static%20Library/" target="_blank" rel="noopener">iOS静态库SDK制作</a></li>
+</ul>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Newer Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/11/09/sdks/" title="iOS SDK开发(静态SDK)">iOS SDK开发(静态SDK)</a></h2>
+                <p class="excerpt">
+                
+                静态方式开发，一直是iOS SDK开发的主流方式。百度地图、高德地图等大型三方SDK均是采用静态的方式开发。也有采用动态的方式开发SDK的如：环信。静态方式和动态方式比较：
+
+
+静态SDK不能嵌套。见iOS中Framework Library嵌套使用。因此，当SDK需要引用其他SDK，且不希望暴露给
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-11-09T13:28:03.000Z" class="post-list__meta--date date">2018-11-09</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/09/sdks/">继续阅读</a></div>
+                           
+            </div>
+        
+        
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">Older Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/03/23/appreview/" title="苹果审核2.1解决方案">苹果审核2.1解决方案</a></h2>
+                <p class="excerpt">
+                
+                近几个月来，在苹果审核中，只要应用中涉及，支付，定位等涉及用户隐私的功能，苹果都会部分青红皂白的打回来，这其实很可能不是APP本身的原因，只是苹果要你自查。
+
+
+原文
+123456789101112131415161718Guideline 2.1 - Information NeededThis 
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2018-03-23T01:49:00.000Z" class="post-list__meta--date date">2018-03-23</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/03/23/appreview/">继续阅读</a></div>
+                       
+            </div>
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        &copy; 2018 吴涛
+       
+    </span>
+    <span class="footer__copyright">
+            
+         </span>
+       
+    
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-78918255-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?c64559abca2b05ba14336daa074499f1";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    
+</body>
+</html>

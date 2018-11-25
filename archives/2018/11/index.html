@@ -126,40 +126,32 @@
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/11/22/hello-worl/" title="link to post.title">Hello World</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2018/11/09/sdks/" title="link to post.title">iOS SDK开发(静态SDK)</a></h2>
       <p class="excerpt">
     
-      Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
+      静态方式开发，一直是iOS SDK开发的主流方式。百度地图、高德地图等大型三方SDK均是采用静态的方式开发。也有采用动态的方式开发SDK的如：环信。静态方式和动态方式比较：
+
+
+静态SDK不能嵌套。见iOS中Framework Library嵌套使用。因此，当SDK需要引用其他SDK，且不希望暴露给用户时，只能采用动态库的开发方式。
+若SDK和项目中用到相同的三方库(如：AFNetworking)
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2018-11-22T13:19:07.403Z" class="post-list__meta--date date">2018-11-22</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/22/hello-worl/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2018-11-09T13:28:03.000Z" class="post-list__meta--date date">2018-11-09</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/09/sdks/">继续阅读</a></div>
       <hr class="post-list__divider">
     </li>
   
     
     <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/11/22/hello-world/" title="link to post.title">Hello World</a></h2>
+      <h2 class="post-list__post-title post-title"><a href="/2018/11/02/sdkd/" title="link to post.title">iOS SDK开发(动态SDK)</a></h2>
       <p class="excerpt">
     
-      Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
+      
+有这样一个需求：开发一个SDK，SDK需要用到AFNetworking等常用第三方库，且主项目中也会用到同样的三方库。
+
+  一直以来开发iOS SDK的常用方式是使用静态库开发，当SDK中需要用到类似AFNetWorking且主项目中也会用到AFNetWorking时，XCode会提示duplicate symbol,且这个问题一直没有有效的处理方式。类似需求，查询网上资料，什么cocoapo
     &hellip;
       </p>
-      <div class="post-list__meta"><time datetime="2018-11-22T13:19:07.403Z" class="post-list__meta--date date">2018-11-22</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/22/hello-world/">继续阅读</a></div>
-      <hr class="post-list__divider">
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2018/11/22/hw/" title="link to post.title">Hello World</a></h2>
-      <p class="excerpt">
-    
-      Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2018-11-22T13:19:07.403Z" class="post-list__meta--date date">2018-11-22</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/22/hw/">继续阅读</a></div>
+      <div class="post-list__meta"><time datetime="2018-11-02T13:08:01.000Z" class="post-list__meta--date date">2018-11-02</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/02/sdkd/">继续阅读</a></div>
       <hr class="post-list__divider">
     </li>
   
@@ -221,7 +213,7 @@ Quick
         var _hmt = _hmt || [];
         (function() {
             var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            hm.src = "//hm.baidu.com/hm.js?c64559abca2b05ba14336daa074499f1";
             var s = document.getElementsByTagName("script")[0]; 
             s.parentNode.insertBefore(hm, s);
         })();

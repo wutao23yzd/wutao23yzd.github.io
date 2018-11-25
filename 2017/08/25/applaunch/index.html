@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     
-    <title>Hello World | 江水涛涛</title>
+    <title>iOS App图标尺寸及启动页尺寸 | 江水涛涛</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="iOS程序员">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Hello World | 江水涛涛">
+    <meta name="twitter:title" content="iOS App图标尺寸及启动页尺寸 | 江水涛涛">
     <meta name="twitter:description" content="iOS程序员">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Hello World | 江水涛涛">
+    <meta property="og:title" content="iOS App图标尺寸及启动页尺寸 | 江水涛涛">
     <meta property="og:description" content="iOS程序员">
 
     
@@ -35,7 +35,7 @@
     <meta name="generator" content="hexo"/>
     
 
-    <link rel="canonical" href="http://yoursite.com/2018/11/22/hello-worl/"/>
+    <link rel="canonical" href="http://yoursite.com/2017/08/25/applaunch/"/>
 
                  
 </head>
@@ -124,25 +124,32 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2018-11-22T13:19:07.403Z" class="post-list__meta--date date">2018-11-22</time> &#8226; <span class="post-meta__tags tags">于  </span>
+      <time datetime="2017-08-25T11:43:50.000Z" class="post-list__meta--date date">2017-08-25</time> &#8226; <span class="post-meta__tags tags">于  </span>
       <span class="page-pv">
        Read <span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
       </span> 
    
     </div>
-    <h1 class="post-title">Hello World</h1>
+    <h1 class="post-title">iOS App图标尺寸及启动页尺寸</h1>
   </header>
 
   <section class="post">
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+    <blockquote><p>当我们写一个项目的时候，首先需要设置app图标尺寸和启动页尺寸</p>
+</blockquote>
+<ol>
+<li>App图标尺寸<br>iOS项目设置图标时，要设置3种样式的图标，分别是spotlight,settings,app<img src="/2017/08/25/applaunch/app1.png">
+<div class="imgDiv"><span class="imgBottom">spotlight</span></div><img src="/2017/08/25/applaunch/app2.png">
+<div class="imgDiv"><span class="imgBottom">appicon</span></div><img src="/2017/08/25/applaunch/app3.png">
+<div class="imgDiv"><span class="imgBottom">settings</span></div><br>目前对图标只考虑二倍屏，和三倍屏，见下表<img src="/2017/08/25/applaunch/app4.jpg">
+<div class="imgDiv"><span class="imgBottom">app图标尺寸</span></div><br>因此，各图标尺寸如下，<br><strong>对于：桌面图标（AppIcon）</strong><br>iPhone6 plus(@3x) : 180 x 180<br>iPhone 6/5s/5/4s/4(@2x) : 120 x 120<br><strong>系统搜索框图标 (Spotlight search results icon)</strong><br>iPhone6 plus(@3x) : 120 x 120<br>iPhone6/5s/5/4s/4(@2x) : 80 x 80<br><strong>系统设置图标 (Settings icon)</strong><br>iPhone6/5s/5/4s/4(@2x) : 58 x 58<br>iPhone6 plus(@3x) : 87 x 87<br>对于到项目中，<img src="/2017/08/25/applaunch/app5.png">
+</li>
+</ol>
+<p>即，要准备6张图片，将58 X 58和87X87 拉到，设置图标中；将80X80，120X120拉到搜索图标下，将120X120,180 X180拉到桌面图标下。</p>
+<ol start="2">
+<li>启动图片尺寸<br>当前只考虑竖屏（Portrait）<br>iPhoen5s/5(@2x) : 640 x 1136<br>iPhoen4s/4(@2x) : 640 x 960<br>iPhone 6s/6(@2x) : 750 x 1334<br>iPhone 6 plus (@3x) : 1242 x 2208<br>4种尺寸，一种设备一种尺寸<img src="/2017/08/25/applaunch/app6.png">
+</li>
+</ol>
+<p>iPhone PortraitiOS8,9-Retina HD 5.5 （1242×2208） @3x<br>iPhone Portraitios8,9-Retina HD 4.7 （750×1334） @2x<br>iPhone Portrait iOS 7,9-2x （640×960） @2x<br>iPhone Portrait iOS 7,9-Retina 4 （640×1136） @2x<br>因此找到这几种尺寸的图片，往相应位置拉</p>
 
   </section>
 
@@ -151,20 +158,24 @@
 <section class="read-more">
            
     
-        
-        
                
             <div class="read-more-item">
-                <span class="read-more-item-dim">Older Post</span>
-                <h2 class="post-list__post-title post-title"><a href="/2018/11/22/hello-world/" title="Hello World">Hello World</a></h2>
+                <span class="read-more-item-dim">Newer Post</span>
+                <h2 class="post-list__post-title post-title"><a href="/2018/03/23/appreview/" title="苹果审核2.1解决方案">苹果审核2.1解决方案</a></h2>
                 <p class="excerpt">
                 
-                Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+                近几个月来，在苹果审核中，只要应用中涉及，支付，定位等涉及用户隐私的功能，苹果都会部分青红皂白的打回来，这其实很可能不是APP本身的原因，只是苹果要你自查。
+
+
+原文
+123456789101112131415161718Guideline 2.1 - Information NeededThis 
                 &hellip;
                 </p>
-                <div class="post-list__meta"><time datetime="2018-11-22T13:19:07.403Z" class="post-list__meta--date date">2018-11-22</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/11/22/hello-world/">继续阅读</a></div>
-                       
+                <div class="post-list__meta"><time datetime="2018-03-23T01:49:00.000Z" class="post-list__meta--date date">2018-03-23</time> &#8226; <span class="post-list__meta--tags tags">于 </span><a class="btn-border-small" href="/2018/03/23/appreview/">继续阅读</a></div>
+                           
             </div>
+        
+        
         
      
    
@@ -207,7 +218,7 @@
         var _hmt = _hmt || [];
         (function() {
             var hm = document.createElement("script");
-            hm.src = "//hm.baidu.com/hm.js?9cdad07c755fa23f6aced510c6760e87";
+            hm.src = "//hm.baidu.com/hm.js?c64559abca2b05ba14336daa074499f1";
             var s = document.getElementsByTagName("script")[0]; 
             s.parentNode.insertBefore(hm, s);
         })();
