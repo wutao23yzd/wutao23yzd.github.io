@@ -11,6 +11,15 @@
   </url>
   
   <url>
+    <loc>https://godweiyang.com/404.html</loc>
+    
+    <lastmod>2023-09-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://godweiyang.com/2023/09/10/agreement/</loc>
     
     <lastmod>2023-09-10</lastmod>
@@ -75,15 +84,6 @@
   
   <url>
     <loc>https://godweiyang.com/tags/index.html</loc>
-    
-    <lastmod>2023-09-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://godweiyang.com/404.html</loc>
     
     <lastmod>2023-09-08</lastmod>
     
