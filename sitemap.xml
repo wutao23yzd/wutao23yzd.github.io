@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://godweiyang.com/2023/09/24/icloud/</loc>
+    
+    <lastmod>2023-09-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://godweiyang.com/2023/09/10/agreement/</loc>
     
     <lastmod>2023-09-10</lastmod>
@@ -85,7 +94,7 @@
 
   <url>
     <loc>https://godweiyang.com/</loc>
-    <lastmod>2023-09-10</lastmod>
+    <lastmod>2023-09-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
