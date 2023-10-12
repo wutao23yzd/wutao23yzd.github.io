@@ -1,0 +1,9 @@
+{
+	"applinks": {
+		"apps": [],
+		"details": [{
+			"appID": "9V22337UY2.com.adaspace.wmark",
+			"paths": ["*"]
+		}]
+	}
+}
